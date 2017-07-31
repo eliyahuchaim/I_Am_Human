@@ -11,8 +11,30 @@ function createThoughts() {
       this.id = ++id
       store.thoughts.push(this)
     }
-  }
 
-}
+    static find(id){
+
+    };
+
+    static findByName(name){
+
+    };
+
+    createThought(){
+
+    };
+
+
+    destroyThought(){
+
+    };
+
+    editThought(){
+
+    };
+
+
+  };  
+};
 
 let Thought = createThoughts()
