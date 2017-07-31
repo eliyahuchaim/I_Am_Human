@@ -12,3 +12,8 @@ $(() => {
 
 
 })
+
+function render(html, where) {
+  $(where).empty()
+  $(html).appendTo(where)
+}
