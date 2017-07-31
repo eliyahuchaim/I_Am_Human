@@ -1,4 +1,4 @@
-function createThoughtController(){
+function createThoughtsController(){
   return class {
 
     static formListener(){
@@ -21,20 +21,19 @@ function createThoughtController(){
       `
       // debugger
       render(html, ".form_here")
-      ThoughtController.formListener()
+      ThoughtsController.formListener()
     }
 
     static createFromForm(){
       let title = $('#title').val()
       let content = $('#content').val()
       let username = User.findOrCreate($('#username').val())
+      let newThought = new Thought(title, content, username.id)
       debugger
-      newThought = new Thought(title, content, username.id)
-
     }
 
 
   }
 }
 
-let ThoughtController = createThoughtController()
+let ThoughtsController = createThoughtsController()
