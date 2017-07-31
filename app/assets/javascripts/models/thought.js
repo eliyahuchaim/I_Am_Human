@@ -20,10 +20,6 @@ function createThoughts() {
 
     };
 
-    createThought(){
-
-    };
-
 
     destroyThought(){
 
@@ -34,7 +30,7 @@ function createThoughts() {
     };
 
 
-  };  
+  };
 };
 
 let Thought = createThoughts()
