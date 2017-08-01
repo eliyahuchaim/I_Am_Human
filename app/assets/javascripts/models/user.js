@@ -25,6 +25,14 @@ function createUsers() {
     }
   }
 
+  thoughts(){
+    return store.thoughts.filter((thought) => {
+      return thought.user_id === this.id
+    })
+  }
+
+
+
   }
 
 }

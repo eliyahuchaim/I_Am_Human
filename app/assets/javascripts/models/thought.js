@@ -16,7 +16,7 @@ function createThoughts() {
 
     };
 
-    static findByName(name){
+    static findByTitle(name){
 
     };
 

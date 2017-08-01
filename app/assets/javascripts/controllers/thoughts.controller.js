@@ -27,11 +27,29 @@ function createThoughtsController(){
     static createFromForm(){
       let title = $('#title').val()
       let content = $('#content').val()
-      let username = User.findOrCreate($('#username').val())
-      let newThought = new Thought(title, content, username.id)
-      debugger
+      let user = User.findOrCreate($('#username').val())
+      let newThought = new Thought(title, content, user.id)
+      let allUsersThoughts = user.thoughts()
+      ThoughtsController.usersThoughtsHTML(allUsersThoughts)
+
     }
 
+    static thoughtsHTML(thought){
+      return `
+      <h3>${thought.title}</h3>
+      <p>${thought.content}</p>
+      <button type="delete" class="destroy_thought">Delete this thought</button>
+      <button type="edit" class="edit_thought">Edit this thought</button>
+      `
+    }
+
+    static usersThoughtsHTML(allUsersThoughts){
+          let html = ""
+          allUsersThoughts.forEach((thought) => {
+          html += ThoughtsController.thoughtsHTML(thought)
+          })
+        render(html, ".thoughts_here")
+    }
 
   }
 }
