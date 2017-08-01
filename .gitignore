@@ -22,4 +22,4 @@
 
 .byebug_history
 
-/app/.DS_Store
+.DS_Store
