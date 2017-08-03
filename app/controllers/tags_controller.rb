@@ -8,6 +8,7 @@ class TagsController < ApplicationController
   end
 
   def create
+    byebug
     new_tag = Tag.create(tag_params)
     render json: new_tag
   end
@@ -31,6 +32,10 @@ class TagsController < ApplicationController
 
   def tag_params
     params.require(:tag).permit(:category_id, :thought_id)
+  end
+
+  def batch_tag_params
+    params.require(:tags).require(:tag).permit(:category_id, :thought_id)
   end
 
   def set_instance

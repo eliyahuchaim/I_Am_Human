@@ -37,6 +37,10 @@ class ThoughtsController < ApplicationController
     params.require
   end
 
+  # def user_id_params
+  #   params.require(:thought).require(:user_id).permit(:id, :username)
+  # end
+
   def set_instance
     @thought = Thought.find(params[:id])
   end
