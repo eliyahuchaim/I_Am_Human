@@ -9,7 +9,12 @@ class ThoughtsController < ApplicationController
 
   def create
     new_thought = Thought.create(thought_params)
-    render json: new_thought
+    # new_thought.update(user_id: user_id_params[:id])
+    if new_thought.id != nil
+      render json: new_thought
+    else
+      render json: {}
+    end
   end
 
   def show
@@ -32,6 +37,10 @@ class ThoughtsController < ApplicationController
   def thought_params
     params.require(:thought).permit(:title, :content, :likes, :views, :user_id)
   end
+
+  # def user_id_params
+  #   params.require(:thought).require(:user_id).permit(:id, :username)
+  # end
 
   def set_instance
     @thought = Thought.find(params[:id])
