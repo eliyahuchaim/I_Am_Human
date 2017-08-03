@@ -9,7 +9,7 @@ class ThoughtsController < ApplicationController
 
   def create
     new_thought = Thought.create(thought_params)
-    render json: new_thought
+    render json: {thought: new_thought, tags: new_thought.tags}
   end
 
   def show
@@ -30,7 +30,11 @@ class ThoughtsController < ApplicationController
   private
 
   def thought_params
-    params.require(:thought).permit(:title, :content, :likes, :views, :user_id)
+    params.require(:thought).permit(:title, :content, :likes, :views, :user_id, tags: [:category_id])
+  end
+
+  def tag_params
+    params.require
   end
 
   def set_instance
