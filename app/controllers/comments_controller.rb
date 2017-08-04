@@ -9,7 +9,11 @@ class CommentsController < ApplicationController
 
   def create
     new_comment = Comment.create(comment_params)
-    render json: new_comment
+    if !new_comment.errors.empty?
+      render json: {status: "error", code: 400, message: new_comment.errors.full_messages[0]}
+    else
+      render json: new_comment
+    end
   end
 
   def show

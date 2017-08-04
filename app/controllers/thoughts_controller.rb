@@ -9,7 +9,11 @@ class ThoughtsController < ApplicationController
 
   def create
     new_thought = Thought.create(thought_params)
-    render json: {thought: new_thought, tags: new_thought.tags}
+    if !new_thought.errors.empty?
+      render json: {status: "error", code: 400, message: new_thought.errors.full_messages[0]}
+    else
+      render json: {thought: new_thought, tags: new_thought.tags}
+    end
   end
 
   def show

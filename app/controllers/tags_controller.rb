@@ -8,9 +8,12 @@ class TagsController < ApplicationController
   end
 
   def create
-    byebug
     new_tag = Tag.create(tag_params)
-    render json: new_tag
+    if !new_tag.errors.empty?
+      render json: {status: "error", code: 400, message: new_tag.errors.full_messages[0]}
+    else
+      render json: new_tag
+    end
   end
 
   def show
@@ -35,7 +38,7 @@ class TagsController < ApplicationController
   end
 
   def batch_tag_params
-    params.require(:tags).require(:tag).permit(:category_id, :thought_id)
+    params.require(:tags).permit(:category_id, :thought_id)
   end
 
   def set_instance

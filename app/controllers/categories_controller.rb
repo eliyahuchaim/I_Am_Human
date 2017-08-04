@@ -9,7 +9,11 @@ class CategoriesController < ApplicationController
 
   def create
     new_category = Category.create(category_params)
-    render json: new_category
+    if !new_category.errors.empty?
+      render json: {status: "error", code: 400, message: new_category.errors.full_messages[0]}
+    else
+      render json: new_category
+    end
   end
 
   def show

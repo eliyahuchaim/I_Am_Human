@@ -9,7 +9,11 @@ class UsersController < ApplicationController
 
   def create
     new_user = User.create(user_params)
-    render json: new_user
+    if !new_user.errors.empty?
+      render json: {status: "error", code: 400, message: new_user.errors.full_messages[0]}
+    else
+      render json: new_user
+    end
   end
 
   def show
